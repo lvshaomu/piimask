@@ -1,0 +1,39 @@
+name: tests
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python-version: ['3.9', '3.12']
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Run test suite
+        run: python test_piimask.py
+
+      - name: CLI smoke test
+        shell: bash
+        run: |
+          python piimask.py --help
+          printf 'name,phone,id_no\n张三,13812345678,11010519491231002X\n' > smoke.csv
+          python piimask.py --in smoke.csv --out out --report
+          cat out/report.txt
+          if grep -q '13812345678' out/smoke.masked.csv; then
+            echo "FAIL: original phone survived masking"
+            exit 1
+          fi
+          echo "OK: original phone gone"

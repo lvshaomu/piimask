@@ -1,5 +1,7 @@
 ﻿# piimask
 
+[![tests](https://github.com/lvshaomu/piimask/actions/workflows/tests.yml/badge.svg)](https://github.com/lvshaomu/piimask/actions/workflows/tests.yml)
+
 **Format-preserving PII masking for CSV / JSON / text.** Zero dependencies.
 
 Mask phone numbers, emails, Chinese ID cards, bank cards and IPv4 addresses so that a file can
