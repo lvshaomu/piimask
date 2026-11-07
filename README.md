@@ -1,4 +1,4 @@
-# piimask
+﻿# piimask
 
 **Format-preserving PII masking for CSV / JSON / text.** Zero dependencies.
 
@@ -130,6 +130,8 @@ CLI round-trips for CSV and JSON, and the `mask` policy.
 There is a larger version with `.xlsx` and `.docx` support, four policies
 (`fake` / `mask` / `token` / `hash`), a restore map and a column-header-driven name detector —
 packaged for people who need it on spreadsheets, not just text files.
+
+Live page: [DataMask on csvtriage.com](https://csvtriage.com/p/datamask.html).
 
 That is not required to use this repo. This one is MIT and stays MIT.
 
